@@ -1,0 +1,35 @@
+# rustunnl Example Config
+# Copy this to ~/.config/rustunnl/<name>.env and customize
+
+# Target SSH connection (remote server)
+# Format: user@hostname or user@IP
+TARGET_HOST="root@YOUR-VPS-IP"
+
+# SSH private key for authentication
+# Use dedicated key for tunnel (not your main SSH key)
+SSH_KEY="$HOME/.ssh/root@oni.ryugen.io"
+
+# Remote port on target server
+# This port will be opened on the remote server (ONI)
+# ONI can then access localhost:REMOTE_PORT
+REMOTE_PORT=33000
+
+# Local target to forward
+# Format: ip:port or hostname:port
+# This is what the remote port forwards TO
+LOCAL_TARGET="localhost:3000"
+
+# Keep-alive settings (prevents timeout)
+# Interval: seconds between keep-alive probes
+# Count Max: how many failed probes before disconnect
+KEEPALIVE_INTERVAL=30
+KEEPALIVE_COUNT_MAX=3
+
+# Optional: Human-readable description
+DESCRIPTION="VPS → Local service tunnel"
+
+# Example Usage:
+# 1. Generate SSH key: ssh-keygen -t ed25519 -f ~/.ssh/root@your-vps.com -C "root@your-vps.com"
+# 2. Copy to remote: ssh-copy-id -i ~/.ssh/root@your-vps.com.pub root@YOUR-VPS-IP
+# 3. Start tunnel: rustunnl start <name>
+# 4. On remote: curl http://localhost:33000/ → accesses your local service

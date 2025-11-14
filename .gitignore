@@ -1,0 +1,22 @@
+# User configs (may contain IPs/hostnames/secrets)
+*.env
+!examples/*.example
+
+# Runtime files  
+*.pid
+*.log
+
+# SSH keys
+*.key
+id_*
+id_ed25519*
+*.pem
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
